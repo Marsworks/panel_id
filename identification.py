@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
+import math
 
-img = cv2.imread('Panel.PNG', 1)
+img = cv2.imread('Panel_2.PNG', 1)
 template_1 = cv2.imread('corner_identifier.PNG', cv2.IMREAD_GRAYSCALE)
 template_2 = cv2.imread('corner_identifier_inverse.PNG', cv2.IMREAD_GRAYSCALE)
 w, h = template_1.shape[::-1]
@@ -31,7 +32,14 @@ for pt in zip(*loc[::-1]):
 
 print(centre_coordinates)
 if len(centre_coordinates) is 4:
-    cv2.rectangle(img, centre_coordinates[0], (centre_coordinates[3][0]+w, centre_coordinates[3][1]+h),
+    pt_distance = []
+    for i in range(4):
+        pt_distance.append(math.sqrt(centre_coordinates[i][0]+centre_coordinates[i][1]))
+
+    coordinate_ordered = zip(pt_distance, centre_coordinates)
+    coordinate_ordered = sorted(coordinate_ordered)
+    print(coordinate_ordered)
+    cv2.rectangle(img, coordinate_ordered[0][1], (coordinate_ordered[3][1][0]+w, coordinate_ordered[3][1][1]+h),
                   (0, 0, 255), 1)
 
 cv2.imshow('res', img)
