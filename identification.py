@@ -30,7 +30,6 @@ for pt in zip(*loc[::-1]):
     else:
         centre_coordinates.append(pt)
 
-print(centre_coordinates)
 if len(centre_coordinates) is 4:
     pt_distance = []
     for i in range(4):
@@ -38,7 +37,9 @@ if len(centre_coordinates) is 4:
 
     coordinate_ordered = zip(pt_distance, centre_coordinates)
     coordinate_ordered = sorted(coordinate_ordered)
-    print(coordinate_ordered)
+    gradient_of_rotation = (coordinate_ordered[0][1][1]-coordinate_ordered[1][1][1]) / \
+                           (coordinate_ordered[0][1][0]-coordinate_ordered[1][1][0])
+    print(gradient_of_rotation)
     cv2.rectangle(img, coordinate_ordered[0][1], (coordinate_ordered[3][1][0]+w, coordinate_ordered[3][1][1]+h),
                   (0, 0, 255), 1)
 
