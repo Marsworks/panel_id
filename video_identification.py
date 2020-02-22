@@ -34,7 +34,7 @@ while True:
 
     print(centre_coordinates)
     if len(centre_coordinates) is 4:
-        cv2.rectangle(frame, centre_coordinates[0], (centre_coordinates[3][0]+w, centre_coordinates[3][0]+h),
+        cv2.rectangle(frame, centre_coordinates[0], (centre_coordinates[3][0]+w, centre_coordinates[3][1]+h),
                       (0, 0, 255), 1)
 
     cv2.imshow("Frame", frame)
